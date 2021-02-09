@@ -1,10 +1,14 @@
+from typing import Optional
+
 import typer
 
 app = typer.Typer()
 
 
 @app.command()
-def create(user_name: str):
+def create(user_name: Optional[str] = typer.Argument(None) ):
+    if not user_name:
+        user_name = typer.prompt("What's your name?")
     typer.echo(f"Creating user: {user_name}")
 
 
